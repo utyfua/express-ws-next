@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "outDir": "./esm",
+        "target": "es2020",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "pretty": true,
+        "stripInternal": true,
+        "types": [
+            "node"
+        ],
+        "strict": true,
+        "experimentalDecorators": true,
+    },
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+    ]
+}

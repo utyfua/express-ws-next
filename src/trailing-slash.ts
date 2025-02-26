@@ -1,5 +1,5 @@
-export default function addTrailingSlash(string) {
-  let suffixed = string;
+export default function addTrailingSlash(str: string) {
+  let suffixed = str;
   if (suffixed.charAt(suffixed.length - 1) !== '/') {
     suffixed = `${suffixed}/`;
   }

@@ -1,5 +1,8 @@
-export default function wrapMiddleware(middleware) {
-  return (req, res, next) => {
+import { NextFunction, Response } from "express";
+import { Request, WebsocketRequestHandler } from "./types";
+
+export default function wrapMiddleware(middleware: WebsocketRequestHandler) {
+  return (req: Request, _res: Response, next: NextFunction) => {
     if (req.ws !== null && req.ws !== undefined) {
       req.wsHandled = true;
       try {

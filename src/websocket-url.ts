@@ -1,7 +1,7 @@
 import trailingSlash from './trailing-slash';
 
 /* The following fixes HenningM/express-ws#17, correctly. */
-export default function websocketUrl(url) {
+export default function websocketUrl(url: string) {
   if (url.indexOf('?') !== -1) {
     const [baseUrl, query] = url.split('?');
 

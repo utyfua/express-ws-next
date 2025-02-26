@@ -1,7 +1,8 @@
 import wrapMiddleware from './wrap-middleware';
 import websocketUrl from './websocket-url';
+import { Application, Router } from './types';
 
-export default function addWsMethod(target) {
+export default function addWsMethod(target: Application | Router) {
   /* This prevents conflict with other things setting `.ws`. */
   if (target.ws === null || target.ws === undefined) {
     target.ws = function addWsRoute(route, ...middlewares) {
@@ -11,7 +12,7 @@ export default function addWsMethod(target) {
        * a non-WebSocket request is made to the same GET route - after all, we are only
        * interested in handling WebSocket requests.
        *
-       * Whereas the original `express-ws` prefixed this path segment, we suffix it -
+       * Whereas the original `express-ws-next` prefixed this path segment, we suffix it -
        * this makes it possible to let requests propagate through Routers like normal,
        * which allows us to specify WebSocket routes on Routers as well \o/! */
       const wsRoute = websocketUrl(route);
@@ -19,6 +20,7 @@ export default function addWsMethod(target) {
       /* Here we configure our new GET route. It will never get called by a client
        * directly, it's just to let our request propagate internally, so that we can
        * leave the regular middleware execution and error handling to Express. */
+      // @ts-ignore todo: fix this
       this.get(...[wsRoute].concat(wrappedMiddlewares));
 
       /*
